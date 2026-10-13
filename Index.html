@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fred Autorijschool — Rijbewijs halen in Epe en omgeving</title>
+<meta name="description" content="Persoonlijke rijopleiding in een Mercedes. Van proefles tot examen — rustig, geduldig en op jouw tempo.">
+
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  CONTENT — CHECK & VERVANG tegen fredautorijschool.nl
+  Alle bedrijfsgegevens, prijzen, pakketnamen en reviews staan hier
+  onder elkaar. Vervang de waarden en je bent klaar.
+  ═══════════════════════════════════════════════════════════════════
+
+  TELEFOON      → 06 – 24 68 10 12        CHECK
+  E-MAIL        → info@fredautorijschool.nl   CHECK
+  LESGEBIED     → Epe en omgeving         CHECK
+  PROEFLES      → € 25,– (verrekening bij pakket)  CHECK
+  LOSSE LES     → € 39,50 per les (60 min) CHECK
+  PAKKET START  → 12 lessen + examen — € 995    CHECK
+  PAKKET COMPLEET → 20 lessen + tussentijdse toets + examen — € 1.595  CHECK
+  PAKKET INTENSIEF → 30 lessen + tussentijdse toets + examen — € 2.295 CHECK
+  REVIEWS       → onderaan sectie "Over Fred"  CHECK (vervang door echte quotes)
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════ BASIS ═══════════ */
+:root{
+  --bg:#0b0c0f; --bg2:#101218; --panel:#12141a;
+  --ink:#f2f3f6; --mut:#9aa0ab; --line:rgba(255,255,255,.09);
+  --amber:#ffb020; --amber-2:#ffc24d; --amber-ink:#181004;
+  --err:#ff5d5d;
+  --fh:'Barlow Condensed',sans-serif; --fb:'Barlow',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--fb);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+::selection{background:var(--amber);color:var(--amber-ink)}
+
+.skip{position:fixed;top:-60px;left:16px;z-index:99;background:var(--amber);
+  color:var(--amber-ink);padding:10px 18px;font:600 14px var(--fh);
+  letter-spacing:.1em;text-transform:uppercase;transition:top .2s}
+.skip:focus{top:12px}
+
+/* WebGL-stage: vaste achtergrond waar de auto leeft */
+#stage{position:fixed;inset:0;z-index:0;display:block}
+body.no-webgl #stage{display:none}
+body.no-webgl{background:
+  repeating-linear-gradient(0deg, #0b0c0f 0px, #0b0c0f 90px, #101116 90px, #101116 92px)}
+
+/* ═══════════ TYPO & SECTIES ═══════════ */
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+main{position:relative;z-index:1}
+section{position:relative;padding-block:clamp(90px,16vh,180px)}
+.sec-label{font:600 13px/1 var(--fh);letter-spacing:.34em;text-transform:uppercase;
+  color:var(--mut);display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sec-label b{color:var(--amber);font-weight:700}
+.sec-label::after{content:"";height:1px;width:56px;background:var(--line)}
+h1,h2,h3{font-family:var(--fh);font-weight:700;line-height:.98;
+  text-transform:uppercase;letter-spacing:.01em}
+h2{font-size:clamp(38px,6vw,74px);max-width:12ch}
+.lead{color:var(--mut);font-size:clamp(16px,1.4vw,18px);max-width:46ch;margin-top:22px}
+.side-l{max-width:560px;margin-right:auto}
+.side-r{max-width:560px;margin-left:auto}
+.panel{background:rgba(13,15,20,.72);border:1px solid var(--line);
+  border-radius:6px;padding:clamp(24px,3vw,40px)}
+
+/* ═══════════ BUTTONS — automotive controls ═══════════ */
+.btn{display:inline-flex;align-items:center;gap:12px;
+  font:700 16px/1 var(--fh);letter-spacing:.14em;text-transform:uppercase;
+  padding:17px 28px;border-radius:3px;transition:background .18s,border-color .18s,
+  transform .1s;user-select:none}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:18px;height:18px;transition:transform .22s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-primary{background:var(--amber);color:var(--amber-ink)}
+.btn-primary:hover{background:var(--amber-2)}
+.btn-ghost{border:1px solid rgba(255,255,255,.24)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ═══════════ NAV ═══════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;height:70px;
+  display:flex;align-items:center;transition:background .3s,border-color .3s;
+  border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(11,12,15,.86);border-color:var(--line);
+  backdrop-filter:blur(10px)}
+.nav-in{width:100%;max-width:1320px;margin-inline:auto;
+  padding-inline:clamp(20px,4vw,48px);display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:11px}
+.l-badge{width:27px;height:27px;background:var(--amber);color:var(--amber-ink);
+  border-radius:4px;display:grid;place-items:center;font:700 16px/1 var(--fh)}
+.brand-name{font:700 23px/1 var(--fh);letter-spacing:.03em}
+.brand-sub{font:600 10px/1 var(--fh);letter-spacing:.36em;color:var(--mut);
+  display:block;margin-top:2px}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{font:600 13px/1 var(--fh);letter-spacing:.18em;text-transform:uppercase;
+  padding:10px 13px;color:var(--mut);border-radius:3px;position:relative;
+  transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--amber)}
+.nav-links a.active::after{content:"";position:absolute;left:13px;right:13px;
+  bottom:2px;height:2px;background:var(--amber)}
+.nav-cta{margin-left:8px;padding:12px 20px}
+#menuBtn{display:none;margin-left:auto;width:44px;height:44px;
+  align-items:center;justify-content:center}
+#menuBtn svg{width:24px;height:24px}
+#mobileNav{position:fixed;inset:0;z-index:30;background:rgba(9,10,13,.97);
+  display:none;flex-direction:column;justify-content:center;padding:0 32px;gap:6px}
+#mobileNav.open{display:flex}
+#mobileNav a{font:700 34px/1 var(--fh);text-transform:uppercase;
+  letter-spacing:.04em;padding:12px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;color:var(--ink)}
+#mobileNav a span{color:var(--amber);font-size:14px;letter-spacing:.2em}
+#mobileNav .btn{margin-top:26px;justify-content:center}
+#closeMenu{position:absolute;top:18px;right:20px;width:44px;height:44px;
+  display:grid;place-items:center}
+#closeMenu svg{width:26px;height:26px}
+
+/* ═══════════ HERO ═══════════ */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:110px}
+#hero h1{font-size:clamp(52px,8.5vw,118px);max-width:9ch}
+#hero .lead{font-size:clamp(17px,1.6vw,20px)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font:600 11px/1 var(--fh);letter-spacing:.4em;color:var(--mut);
+  text-transform:uppercase}
+.scroll-hint::after{content:"";width:1px;height:44px;
+  background:repeating-linear-gradient(180deg,var(--mut) 0 5px,transparent 5px 10px)}
+
+/* ═══════════ KRUISPUNT ═══════════ */
+#kruispunt{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.kp-in{width:100%;max-width:960px;margin-inline:auto;text-align:center}
+.kp-in h2{margin-inline:auto}
+.choices{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:44px}
+.choice{border:1px solid var(--line);background:rgba(13,15,20,.78);
+  border-radius:6px;padding:26px 30px;width:min(420px,100%);text-align:left;
+  display:flex;align-items:center;gap:22px;
+  transition:border-color .2s,transform .25s}
+.choice svg{width:34px;height:34px;flex:none;color:var(--mut);transition:color .2s}
+.choice strong{display:block;font:700 26px/1 var(--fh);text-transform:uppercase;
+  letter-spacing:.03em}
+.choice small{color:var(--mut);font-size:14px}
+.choice:hover,.choice:focus-visible{border-color:var(--amber);transform:translateY(-3px)}
+.choice:hover svg{color:var(--amber)}
+.choice.go-l:hover{transform:translateX(-6px)}
+.choice.go-r:hover{transform:translateX(6px)}
+.kp-note{margin-top:30px;font-size:13.5px;color:var(--mut)}
+
+/* ═══════════ PROEFLES ═══════════ */
+#proefles{min-height:120vh;display:flex;align-items:center}
+.price-tag{display:inline-flex;align-items:baseline;gap:10px;margin-top:28px;
+  border-left:3px solid var(--amber);padding-left:16px}
+.price-tag b{font:700 34px/1 var(--fh)}
+.price-tag span{color:var(--mut);font-size:14px}
+
+/* ═══════════ RIJOPLEIDING — route met milestones ═══════════ */
+.route{margin-top:44px;position:relative;padding-left:58px;
+  border-left:1px dashed rgba(255,255,255,.22);max-width:600px}
+.milestone{position:relative;padding:16px 0 40px}
+.m-badge{position:absolute;left:-58px;top:14px;width:44px;height:44px;
+  border:1px solid var(--amber);border-radius:5px;background:var(--bg);
+  display:grid;place-items:center;font:700 17px/1 var(--fh);color:var(--amber);
+  transform:translateX(-22.5px)}
+.milestone h3{font-size:26px;margin-bottom:8px}
+.milestone p{color:var(--mut);max-width:46ch}
+.route-note{margin-top:8px;color:var(--mut);font-size:14.5px;
+  display:flex;align-items:center;gap:10px}
+.route-note svg{width:17px;height:17px;color:var(--amber);flex:none}
+
+/* ═══════════ PAKKETTEN — dashboardkaarten ═══════════ */
+.pack-top{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-end;
+  justify-content:space-between;margin-bottom:44px}
+.pack-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px}
+.pack{border:1px solid var(--line);background:rgba(14,16,21,.82);
+  border-radius:8px;padding:clamp(24px,2.6vw,36px);position:relative;
+  transition:border-color .25s,transform .25s}
+.pack:hover{border-color:rgba(255,176,32,.5);transform:translateY(-4px)}
+.pack.featured{grid-row:span 2;border-color:rgba(255,176,32,.55);
+  display:flex;flex-direction:column}
+.tag{position:absolute;top:22px;right:22px;background:var(--amber);
+  color:var(--amber-ink);font:700 11px/1 var(--fh);letter-spacing:.2em;
+  padding:7px 11px;border-radius:2px}
+.meter{width:118px;margin-bottom:18px}
+.meter path.arc{stroke:rgba(255,255,255,.14)}
+.meter path.ticks{stroke:rgba(255,255,255,.28)}
+.needle{transform:rotate(-76deg);transform-origin:60px 62px;
+  transition:transform 1.3s cubic-bezier(.2,.85,.25,1)}
+.pack.lit .needle{transform:rotate(var(--a))}
+.pack h3{font-size:clamp(28px,2.4vw,36px)}
+.pack .p-price{font:700 52px/1 var(--fh);margin:16px 0 4px}
+.pack .p-price small{font-size:16px;color:var(--mut);font-weight:600;letter-spacing:.06em}
+.pack ul{list-style:none;margin:22px 0 28px;flex:1}
+.pack li{display:flex;gap:12px;padding:9px 0;color:#c9ccd3;font-size:15px;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.pack li svg{width:17px;height:17px;color:var(--amber);flex:none;margin-top:4px}
+.pack .btn{width:100%;justify-content:center}
+.pack-sub{font-size:13px;color:var(--mut);margin-top:14px}
+.los{margin-top:22px;color:var(--mut);font-size:14.5px;display:flex;
+  align-items:center;gap:10px}
+.los b{color:var(--ink)}
+.los svg{width:16px;height:16px;color:var(--amber)}
+
+/* ═══════════ OVER FRED ═══════════ */
+#overfred .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,70px);
+  margin-top:20px}
+.fred-card{align-self:start}
+.fred-card .fc-top{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.fc-badge{width:64px;height:64px;border:1px solid var(--amber);border-radius:8px;
+  display:grid;place-items:center;font:700 34px/1 var(--fh);color:var(--amber)}
+.fred-card h3{font-size:30px}
+.fred-card .fc-sub{font:600 12px/1.4 var(--fh);letter-spacing:.24em;
+  color:var(--mut);text-transform:uppercase}
+.fred-card p{color:#c4c7ce}
+.quotes{margin-top:34px;display:grid;gap:16px}
+.quote{border-left:3px solid var(--amber);padding:4px 0 4px 18px;color:#c4c7ce}
+.quote em{font-style:normal;display:block;font-size:16.5px}
+.quote small{color:var(--mut);display:block;margin-top:6px;font-size:13px}
+.fact{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.fact svg{width:22px;height:22px;color:var(--amber);flex:none;margin-top:3px}
+.fact h4{font:700 19px/1.2 var(--fh);text-transform:uppercase;letter-spacing:.04em;
+  margin-bottom:5px}
+.fact p{color:var(--mut);font-size:15px;max-width:44ch}
+
+/* ═══════════ CONTACT ═══════════ */
+#contact .grid{display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(30px,4vw,64px);margin-top:30px}
+.field{margin-bottom:18px}
+.field label{display:block;font:600 12px/1 var(--fh);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mut);margin-bottom:9px}
+.field input,.field select,.field textarea{width:100%;background:#0e1016;
+  border:1px solid var(--line);border-radius:3px;color:var(--ink);
+  padding:14px 16px;font:400 16px var(--fb);transition:border-color .15s}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--amber)}
+.field.error input{border-color:var(--err)}
+.field .msg{display:none;color:var(--err);font-size:13px;margin-top:7px}
+.field.error .msg{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-success{display:none;padding:44px 34px;text-align:center}
+.form-success.show{display:block}
+.form-success svg{width:52px;height:52px;color:var(--amber);margin-bottom:18px}
+.form-success h3{font-size:28px;margin-bottom:10px}
+.form-success p{color:var(--mut)}
+.c-item{padding:22px 0;border-bottom:1px solid var(--line);display:flex;gap:18px}
+.c-item svg{width:22px;height:22px;color:var(--amber);flex:none;margin-top:4px}
+.c-item h4{font:700 15px/1 var(--fh);letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mut);margin-bottom:7px}
+.c-item a{border-bottom:1px solid rgba(255,176,32,.4)}
+.c-item a:hover{color:var(--amber);border-color:var(--amber)}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{position:relative;z-index:1;border-top:1px solid var(--line);
+  padding:44px 0 40px;background:rgba(11,12,15,.6)}
+.foot-in{display:flex;flex-wrap:wrap;gap:24px;align-items:center;
+  justify-content:space-between}
+.foot-links{display:flex;flex-wrap:wrap;gap:22px;font:600 12px/1 var(--fh);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.foot-links a:hover{color:var(--amber)}
+.foot-c{color:var(--mut);font-size:13px}
+
+/* ═══════════ HUD — instrument onderin ═══════════ */
+#hud{position:fixed;left:22px;bottom:22px;z-index:5;
+  border-left:2px solid var(--amber);padding:10px 18px 10px 16px;
+  background:rgba(11,12,15,.62);border-radius:0 4px 4px 0;
+  font-family:var(--fh);user-select:none;pointer-events:none;
+  opacity:0;transition:opacity .5s}
+#hud.on{opacity:1}
+.hud-row1{display:flex;align-items:baseline;gap:8px}
+#hudSpeed{font:700 40px/1 var(--fh);font-variant-numeric:tabular-nums;
+  min-width:64px}
+.hud-row1 small{font:600 12px/1 var(--fh);letter-spacing:.2em;color:var(--mut)}
+.hud-row2{display:flex;gap:14px;font:600 11px/1 var(--fh);letter-spacing:.24em;
+  color:var(--mut);text-transform:uppercase;margin-top:4px}
+#hudGear{color:var(--amber)}
+body.no-webgl #hud{display:none}
+
+/* ═══════════ TOAST ═══════════ */
+#toast{position:fixed;right:22px;bottom:22px;z-index:40;background:var(--panel);
+  border:1px solid var(--line);border-left:3px solid var(--amber);
+  padding:16px 22px;border-radius:4px;font-size:15px;
+  transform:translateY(20px);opacity:0;pointer-events:none;
+  transition:transform .35s,opacity .35s;max-width:min(380px,86vw)}
+#toast.show{transform:none;opacity:1}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:980px){
+  .nav-links,.nav-cta{display:none}
+  #menuBtn{display:flex}
+  #overfred .grid,#contact .grid{grid-template-columns:1fr}
+  .pack-grid{grid-template-columns:1fr}
+  .pack.featured{grid-row:auto}
+  #hero h1{max-width:11ch}
+}
+@media(max-width:560px){
+  .form-row{grid-template-columns:1fr}
+  #hud{left:14px;bottom:14px;padding:8px 14px 8px 12px}
+  #hudSpeed{font-size:30px;min-width:48px}
+  .scroll-hint{display:none}
+  .side-l,.side-r{margin-inline:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#proefles">Direct naar inhoud</a>
+<canvas id="stage" aria-hidden="true"></canvas>
+
+<!-- ════════ NAVIGATIE ════════ -->
+<nav id="nav" aria-label="Hoofdnavigatie">
+  <div class="nav-in">
+    <a href="#hero" class="brand" data-scroll>
+      <span class="l-badge" aria-hidden="true">L</span>
+      <span><span class="brand-name">FRED</span>
+      <span class="brand-sub">AUTORIJSCHOOL</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#rijopleiding" data-scroll data-nav="rijopleiding">Rijopleiding</a>
+      <a href="#pakketten" data-scroll data-nav="pakketten">Pakketten</a>
+      <a href="#proefles" data-scroll data-nav="proefles">Proefles</a>
+      <a href="#overfred" data-scroll data-nav="overfred">Over Fred</a>
+      <a href="#contact" data-scroll data-nav="contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn btn-primary nav-cta" data-scroll
+      data-preset="Proefles">Proefles
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button id="menuBtn" aria-label="Menu openen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div id="mobileNav" aria-label="Mobiel menu">
+  <button id="closeMenu" aria-label="Menu sluiten">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <a href="#proefles" data-scroll><span>01</span>Proefles</a>
+  <a href="#rijopleiding" data-scroll><span>02</span>Rijopleiding</a>
+  <a href="#pakketten" data-scroll><span>03</span>Pakketten</a>
+  <a href="#overfred" data-scroll><span>04</span>Over Fred</a>
+  <a href="#contact" data-scroll><span>05</span>Contact</a>
+  <a href="#contact" class="btn btn-primary" data-scroll data-preset="Proefles">Plan je proefles
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
+<main id="inhoud">
+
+  <!-- ════════ 1 · HERO — de auto staat klaar ════════ -->
+  <section id="hero">
+    <div class="wrap">
+      <div class="side-l">
+        <div class="sec-label"><b>EPE</b> EN OMGAVING — RIJBWIJS B</div>
+        <h1>Klaar om je rijbewijs te halen?</h1>
+        <p class="lead">Bij Fred Autorijschool leer je rijden in een Mercedes — rustig,
+        persoonlijk en op jouw tempo. Van je eerste meters tot het examen.</p>
+        <div class="hero-ctas">
+          <button id="startRit" class="btn btn-primary">Start je rit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <a href="#pakketten" class="btn btn-ghost" data-scroll>Bekijk pakketten</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Scroll = rijden</div>
+  </section>
+
+  <!-- ════════ KRUISPUNT — kies je route ════════ -->
+  <section id="kruispunt">
+    <div class="kp-in wrap">
+      <div class="sec-label" style="justify-content:center"><b>KRUISPUNT</b></div>
+      <h2>Kies je route</h2>
+      <div class="choices">
+        <button class="choice go-l" id="keuzeProefles">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          <span><strong>Proefles</strong><small>Eerst kennismaken achter het stuur</small></span>
+        </button>
+        <button class="choice go-r" id="keuzeDoor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span><strong>Doorrijden</strong><small>Alles over de rijopleiding</small></span>
+        </button>
+      </div>
+      <p class="kp-note">Twijfel je? Met de navigatie bovenaan ben je altijd binnen één klik waar je wezen moet.</p>
+    </div>
+  </section>
+
+  <!-- ════════ 01 · PROEFLES — de auto stopt ════════ -->
+  <section id="proefles">
+    <div class="wrap">
+      <div class="side-l panel">
+        <div class="sec-label"><b>01</b> PROEFLES</div>
+        <h2>Eerst even kennis­maken achter het stuur</h2>
+        <p class="lead">In de proefles maak je kennis met Fred en de Mercedes. Je stapt in,
+        rijdt je eerste meters en merkt meteen of het klikt. Daarna beslis je zelf
+        of je verder gaat — geen verplichting.</p>
+        <div class="price-tag"><b>€ 25,–</b><span>proefles · verrekening bij een pakket</span></div>
+        <div style="margin-top:34px">
+          <a href="#contact" class="btn btn-primary" data-scroll data-preset="Proefles">Plan je proefles
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 02 · RIJOPLEIDING — de route met borden ════════ -->
+  <section id="rijopleiding">
+    <div class="wrap">
+      <div class="side-r">
+        <div class="sec-label"><b>02</b> RIJOPLEIDING</div>
+        <h2>Van eerste gas tot examen</h2>
+        <p class="lead">Iedereen start op een ander niveau. Daarom bepaal jij het tempo —
+        en sturen we de opleiding bij waar jij groeit.</p>
+        <div class="route">
+          <div class="milestone"><span class="m-badge">1</span>
+            <h3>Starten</h3>
+            <p>Nog nooit gereden? Dan oefenen we eerst in een rustige omgeving, dicht bij huis.</p>
+          </div>
+          <div class="milestone"><span class="m-badge">2</span>
+            <h3>Opbouwen</h3>
+            <p>Gaat het steeds makkelijker? Dan verbreden we de route: van dorpswegen tot de snelweg.</p>
+          </div>
+          <div class="milestone"><span class="m-badge">3</span>
+            <h3>Toetsen</h3>
+            <p>Met een tussentijdse toets oefen je het examen en weet je precies waar je staat.</p>
+          </div>
+          <div class="milestone"><span class="m-badge">4</span>
+            <h3>Examen</h3>
+            <p>Goed voorbereid naar het CBR — kalm, vertrouwd en in een auto die je kent.</p>
+          </div>
+        </div>
+        <p class="route-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Lessen van 60 minuten. Tijden in overleg — ook ’s avonds en in het weekend.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 03 · PAKKETTEN — dashboardkaarten ════════ -->
+  <section id="pakketten">
+    <div class="wrap">
+      <div class="pack-top">
+        <div>
+          <div class="sec-label"><b>03</b> PAKKETTEN &amp; PRIJZEN</div>
+          <h2>Kies jouw pakket</h2>
+        </div>
+        <p class="los">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Liever los? <b>Losse les € 39,50</b>&nbsp;per uur (60 min)
+        </p>
+      </div>
+      <div class="pack-grid">
+
+        <article class="pack featured" data-pack="Compleet">
+          <span class="tag">Meest gekozen</span>
+          <svg class="meter" viewBox="0 0 120 70" aria-hidden="true">
+            <path class="arc" d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke-width="2"/>
+            <path class="ticks" d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke-width="8" stroke-dasharray="1.5 12.6"/>
+            <g class="needle" style="--a:6deg">
+              <rect x="58.6" y="22" width="2.8" height="40" rx="1.4" fill="#ffb020"/>
+            </g>
+            <circle cx="60" cy="62" r="5" fill="#ffb020"/>
+          </svg>
+          <h3>Compleet</h3>
+          <div class="p-price">€ 1.595<small>&nbsp;·&nbsp;eenmalig</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>20 rijlessen van 60 minuten</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>Tussentijdse toets als examen-oefening</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>Praktijkexamen CBR, met de lesauto</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>Vaste instructeur, van start tot examen</li>
+          </ul>
+          <button class="btn btn-primary" data-choose="Compleet">Kies compleet
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </article>
+
+        <article class="pack" data-pack="Start">
+          <span class="tag" style="background:transparent;border:1px solid var(--line);color:var(--mut)">Basis</span>
+          <svg class="meter" viewBox="0 0 120 70" aria-hidden="true">
+            <path class="arc" d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke-width="2"/>
+            <path class="ticks" d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke-width="8" stroke-dasharray="1.5 12.6"/>
+            <g class="needle" style="--a:-38deg">
+              <rect x="58.6" y="22" width="2.8" height="40" rx="1.4" fill="#ffb020"/>
+            </g>
+            <circle cx="60" cy="62" r="5" fill="#ffb020"/>
+          </svg>
+          <h3>Start</h3>
+          <div class="p-price">€ 995<small>&nbsp;·&nbsp;eenmalig</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>12 rijlessen van 60 minuten</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>Praktijkexamen CBR, met de lesauto</li>
+          </ul>
+          <button class="btn btn-ghost" data-choose="Start">Kies start</button>
+        </article>
+
+        <article class="pack" data-pack="Intensief">
+          <span class="tag" style="background:transparent;border:1px solid var(--line);color:var(--mut)">Snel</span>
+          <svg class="meter" viewBox="0 0 120 70" aria-hidden="true">
+            <path class="arc" d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke-width="2"/>
+            <path class="ticks" d="M12 62 A48 48 0 0 1 108 62" fill="none" stroke-width="8" stroke-dasharray="1.5 12.6"/>
+            <g class="needle" style="--a:42deg">
+              <rect x="58.6" y="22" width="2.8" height="40" rx="1.4" fill="#ffb020"/>
+            </g>
+            <circle cx="60" cy="62" r="5" fill="#ffb020"/>
+          </svg>
+          <h3>Intensief</h3>
+          <div class="p-price">€ 2.295<small>&nbsp;·&nbsp;eenmalig</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>30 rijlessen van 60 minuten</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 7"/></svg>Tussentijdse toets + examen CBR</li>
+          </ul>
+          <button class="btn btn-ghost" data-choose="Intensief">Kies intensief</button>
+        </article>
+
+      </div>
+      <p class="los" style="margin-top:26px">Prijzen incl. btw. Exacte invulling en mogelijkheden altijd in overleg.</p>
+    </div>
+  </section>
+
+  <!-- ════════ 04 · OVER FRED ════════ -->
+  <section id="overfred">
+    <div class="wrap">
+      <div class="sec-label"><b>04</b> OVER FRED</div>
+      <h2>Eén naam, één instructeur</h2>
+      <div class="grid">
+        <div class="fred-card panel">
+          <div class="fc-top">
+            <span class="fc-badge">F</span>
+            <div><h3>Fred</h3>
+            <span class="fc-sub">Instructeur &amp; eigenaar</span></div>
+          </div>
+          <p>Geen rijschool met wisselende instructeurs, maar één vaste naam.
+          Fred rijdt zelf met je mee — van je eerste meters tot het moment
+          dat je examen haalt.</p>
+          <div class="quotes">
+            <div class="quote"><em>“Rustig, duidelijk en altijd met geduld —
+            precies wat ik nodig had.”</em><small>Voormalig leerling</small></div>
+            <div class="quote"><em>“Het vertrouwen in het verkeer kwam sneller
+            dan ik dacht.”</em><small>Voormalig leerling</small></div>
+          </div>
+        </div>
+        <div>
+          <div class="fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12C19 16.4 12 21 12 21z"/></svg>
+            <div><h4>Persoonlijke aanpak</h4>
+            <p>Rustig en geduldig. Zenuwachtig bij je eerste keer? Dat is normaal — er wordt rekening mee gehouden.</p></div>
+          </div>
+          <div class="fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 16l1.5-5.5h11L19 16M5 16h14M7 16v2M17 16v2"/><circle cx="8.5" cy="8" r="1.6"/><circle cx="15.5" cy="8" r="1.6"/></svg>
+            <div><h4>Les in een Mercedes</h4>
+            <p>Comfortabel en modern leren rijden — in een auto waar je je meteen veilig in voelt.</p></div>
+          </div>
+          <div class="fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <div><h4>Lesgebied</h4>
+            <p>Van huis weg oefenen in Epe en omgeving, later de bredere regio en examenroutes.</p></div>
+          </div>
+          <div class="fact" style="border-bottom:0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><h4>Flexibel plannen</h4>
+            <p>Lestijden in overleg — ook ’s avonds en in het weekend, naast school of werk.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 05 · CONTACT — bestemming ════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-label"><b>05</b> BESTEMMING</div>
+      <h2>Aangekomen. Tijd om in te stappen.</h2>
+      <div class="grid">
+        <div class="panel">
+          <form id="proeflesForm" novalidate>
+            <div class="form-row">
+              <div class="field" id="f-naam">
+                <label for="in-naam">Naam</label>
+                <input id="in-naam" type="text" autocomplete="name" placeholder="Jouw naam">
+                <span class="msg">Vul je naam in.</span>
+              </div>
+              <div class="field" id="f-tel">
+                <label for="in-tel">Telefoon</label>
+                <input id="in-tel" type="tel" autocomplete="tel" placeholder="06 –">
+                <span class="msg">Telefoon of e-mail invullen.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field" id="f-mail">
+                <label for="in-mail">E-mail</label>
+                <input id="in-mail" type="email" autocomplete="email" placeholder="jij@voorbeeld.nl">
+                <span class="msg">Telefoon of e-mail invullen.</span>
+              </div>
+              <div class="field">
+                <label for="in-keuze">Interesse</label>
+                <select id="in-keuze">
+                  <option>Proefles</option>
+                  <option>Start</option>
+                  <option>Compleet</option>
+                  <option>Intensief</option>
+                  <option>Nog onduidelijk</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="in-bericht">Bericht <span style="text-transform:none;letter-spacing:0">(optioneel)</span></label>
+              <textarea id="in-bericht" placeholder="Bijvoorbeeld: je voorkeur voor lestijden of een vraag."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+              Verstuur aanvraag
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M7 12.5l3.5 3.5L17 9"/></svg>
+            <h3>Aanvraag ontvangen</h3>
+            <p>Fred neemt zo snel mogelijk contact met je op.</p>
+            <button class="btn btn-ghost" id="opnieuw" style="margin-top:24px">Nieuwe aanvraag</button>
+          </div>
+        </div>
+        <div>
+          <div class="c-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+            <div><h4>Telefoon</h4><a href="tel:+31624681012">06 – 24 68 10 12</a></div>
+          </div>
+          <div class="c-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div><h4>E-mail</h4><a href="mailto:info@fredautorijschool.nl">info@fredautorijschool.nl</a></div>
+          </div>
+          <div class="c-item" style="border-bottom:0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <div><h4>Lesgebied</h4><p>Epe en omgeving</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <a href="#hero" class="brand" data-scroll>
+      <span class="l-badge" aria-hidden="true">L</span>
+      <span><span class="brand-name">FRED</span>
+      <span class="brand-sub">AUTORIJSCHOOL</span></span>
+    </a>
+    <div class="foot-links">
+      <a href="#proefles" data-scroll>Proefles</a>
+      <a href="#pakketten" data-scroll>Pakketten</a>
+      <a href="#overfred" data-scroll>Over Fred</a>
+      <a href="#contact" data-scroll>Contact</a>
+    </div>
+    <div class="foot-c">© 2026 Fred Autorijschool — Rijopleidingen in Epe en omgeving</div>
+  </div>
+</footer>
+
+<!-- HUD: snelheid + toestand, gekoppeld aan je scroll -->
+<div id="hud" aria-hidden="true">
+  <div class="hud-row1"><span id="hudSpeed">0</span><small>KM/U</small></div>
+  <div class="hud-row2"><span id="hudGear">P</span><span id="hudState">Geparkeerd</span><span id="hudSec">—</span></div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = () => innerWidth < 720;
+
+/* ═══════════════ UI: nav, menu, toast, formulier ═══════════════ */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+const mobileNav = document.getElementById('mobileNav');
+document.getElementById('menuBtn').onclick = () => mobileNav.classList.add('open');
+document.getElementById('closeMenu').onclick = () => mobileNav.classList.remove('open');
+
+let toastT;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 3600);
+}
+
+/* Zacht scrollen naar secties (met of zonder motion) */
+function goTo(sel){
+  if (RM){ document.querySelector(sel).scrollIntoView(); return; }
+  gsap.to(window, {scrollTo:sel, duration:1.4, ease:'power2.inOut', overwrite:true});
+}
+document.querySelectorAll('[data-scroll]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    mobileNav.classList.remove('open');
+    if (el.dataset.preset) document.getElementById('in-keuze').value = el.dataset.preset;
+    goTo(el.getAttribute('href'));
+  });
+});
+
+/* Formuliervalidatie + lokale bevestiging */
+const form = document.getElementById('proeflesForm');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const naam = document.getElementById('in-naam');
+  const tel  = document.getElementById('in-tel');
+  const mail = document.getElementById('in-mail');
+  const okNaam = naam.value.trim().length > 1;
+  const okTel  = tel.value.trim().length > 5;
+  const okMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim());
+  document.getElementById('f-naam').classList.toggle('error', !okNaam);
+  document.getElementById('f-tel').classList.toggle('error', !okTel && !okMail);
+  document.getElementById('f-mail').classList.toggle('error', !okTel && !okMail);
+  if (!(okNaam && (okTel || okMail))) return;
+  form.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+  toast('Aanvraag verzonden — Fred neemt contact met je op.');
+});
+document.getElementById('opnieuw').onclick = () => {
+  form.reset(); form.style.display = '';
+  document.getElementById('formSuccess').classList.remove('show');
+};
+
+/* Pakket-keuze → invullen in formulier + doorscrollen */
+document.querySelectorAll('[data-choose]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('in-keuze').value = btn.dataset.choose;
+    toast('Pakket ' + btn.dataset.choose + ' geselecteerd.');
+    goTo('#contact');
+  });
+});
+
+/* Reveal-animaties (overgeslagen bij reduced motion) */
+if (!RM){
+  gsap.utils.toArray('section .wrap, #kruispunt .kp-in').forEach(el => {
+    gsap.from(el, {y:44, opacity:0, duration:1, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+}
+/* Naalden van de pakket-meters laten aanslaan zodra ze in beeld zijn */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('lit');
+}), {threshold:.4});
+document.querySelectorAll('.pack').forEach(p => io.observe(p));
+
+/* Actieve nav-link per sectie */
+const navMap = {};
+document.querySelectorAll('[data-nav]').forEach(a => navMap[a.dataset.nav] = a);
+['proefles','rijopleiding','pakketten','overfred','contact'].forEach(id => {
+  ScrollTrigger.create({trigger:'#'+id, start:'top 45%', end:'bottom 45%',
+    onToggle(self){
+      if (self.isActive){
+        Object.values(navMap).forEach(a => a.classList.remove('active'));
+        if (navMap[id]) navMap[id].classList.add('active');
+        curSection = id;
+      }
+    }});
+});
+let curSection = 'hero';
+
+/* ═══════════════ 3D — de lesauto en de weg ═══════════════ */
+let three = null; // blijft null bij geen WebGL of reduced-motion-scène-storing
+
+function initThree(){
+  const canvas = document.getElementById('stage');
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({canvas, antialias:true, powerPreference:'high-performance'});
+  } catch(err){ document.body.classList.add('no-webgl'); return null; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile() ? 1.5 : 2));
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0b0c0f);
+  scene.fog = new THREE.Fog(0x0b0c0f, 13, 44);
+
+  const camera = new THREE.PerspectiveCamera(isMobile() ? 54 : 40,
+    innerWidth/innerHeight, .1, 120);
+  camera.position.set(6.4, 1.05, -2.6);
+
+  /* — Omgeving voor lak-reflecties: studio met lichtpanelen — */
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const envScene = new THREE.Scene();
+  const panel = (w,h,rgb,pos,rot) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w,h),
+      new THREE.MeshBasicMaterial({color:new THREE.Color().setRGB(...rgb), side:THREE.DoubleSide}));
+    m.position.set(...pos); m.rotation.set(...rot); envScene.add(m);
+  };
+  panel(16,9,[5,5,5.4],[0,9,0],[Math.PI/2,0,0]);        // softbox boven
+  panel(12,2.4,[7,3.2,.5],[-10,2.6,2],[0,Math.PI/3,0]); // amber strip
+  panel(10,6,[.9,1.1,1.6],[9,5,-9],[0,-.8,0]);          // koel paneel
+  scene.environment = pmrem.fromScene(envScene, .02).texture;
+
+  /* — Verlichting — */
+  scene.add(new THREE.AmbientLight(0x23262d, .55));
+  const key = new THREE.DirectionalLight(0xffffff, .85); key.position.set(6,9,4); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xdfe6ee, .5); rim.position.set(-8,4,-6); scene.add(rim);
+  const amberSpot = new THREE.SpotLight(0xffb020, 70, 45, .55, .7, 1.3);
+  amberSpot.position.set(-8,7,-4);
+  amberSpot.target.position.set(0,.4,0);
+  scene.add(amberSpot, amberSpot.target);
+
+  /* — Canvas-textures (kenteken, L-bord, schaduw) — */
+  const tex = (w,h,draw) => {
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    draw(c.getContext('2d'));
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+    return t;
+  };
+  const plateTex = tex(256,64,ctx => {
+    ctx.fillStyle = '#f2c400'; ctx.fillRect(0,0,256,64);
+    ctx.fillStyle = '#141414';
+    ctx.font = '700 44px Barlow Condensed, Arial';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('FR-ED-06', 128, 36);
+  });
+  const lTex = tex(128,128,ctx => {
+    ctx.fillStyle = '#1b4f9c'; ctx.fillRect(0,0,128,128);
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 8; ctx.strokeRect(6,6,116,116);
+    ctx.fillStyle = '#fff';
+    ctx.font = '700 84px Barlow Condensed, Arial';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('L', 64, 72);
+  });
+  const shadowTex = tex(256,128,ctx => {
+    const g = ctx.createRadialGradient(128,64,10,128,64,120);
+    g.addColorStop(0,'rgba(0,0,0,.78)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle = g; ctx.fillRect(0,0,256,128);
+  });
+
+  /* ══ DE AUTO — procedureel gebouwd, Mercedes-achtige sedan ══ */
+  const carRoot = new THREE.Group();      // draait bij afslagen
+  const body = new THREE.Group();          // pitch / roll / trilling
+  carRoot.add(body); scene.add(carRoot);
+
+  const paint = new THREE.MeshStandardMaterial({color:0x9aa0a8,
+    metalness:.9, roughness:.3, envMapIntensity:1.15});
+  const glass = new THREE.MeshStandardMaterial({color:0x05070c,
+    metalness:.9, roughness:.06, envMapIntensity:1.6});
+  const darkPl = new THREE.MeshStandardMaterial({color:0x0c0d10,
+    metalness:.6, roughness:.5});
+
+  // Carrosserie: zijprofiel met vloeiende lijnen, geëxtrudeerd met afronding
+  const s = new THREE.Shape();
+  s.moveTo(-2.05,.32); s.lineTo(2.0,.32);
+  s.quadraticCurveTo(2.3,.34,2.32,.55); s.lineTo(2.32,.6);
+  s.quadraticCurveTo(2.32,.74,2.02,.76);        // neus → motorkap
+  s.lineTo(.95,.93); s.lineTo(-1.55,1.0);        // gordelijn
+  s.quadraticCurveTo(-2.05,1.02,-2.2,.88);       // achterklep
+  s.quadraticCurveTo(-2.34,.74,-2.32,.55);
+  s.lineTo(-2.3,.38); s.quadraticCurveTo(-2.27,.32,-2.05,.32);
+  const bodyGeo = new THREE.ExtrudeGeometry(s,{depth:1.42, bevelEnabled:true,
+    bevelThickness:.1, bevelSize:.1, bevelSegments:4, curveSegments:16, steps:1});
+  bodyGeo.translate(0,0,-.71);
+  body.add(new THREE.Mesh(bodyGeo, paint));
+
+  // Glaspartij: taps smaller dak boven de gordelijn
+  const c = new THREE.Shape();
+  c.moveTo(.9,.9); c.lineTo(-1.45,1.0);
+  c.quadraticCurveTo(-1.62,1.06,-1.45,1.32);
+  c.quadraticCurveTo(-.5,1.5,.35,1.44);
+  c.quadraticCurveTo(.78,1.34,.9,.9);
+  const cabGeo = new THREE.ExtrudeGeometry(c,{depth:1.02, bevelEnabled:true,
+    bevelThickness:.09, bevelSize:.09, bevelSegments:3, curveSegments:12});
+  cabGeo.translate(0,0,-.51);
+  body.add(new THREE.Mesh(cabGeo, glass));
+
+  // Grille, spiegels, details
+  const grill = new THREE.Mesh(new THREE.BoxGeometry(.06,.16,.92), darkPl);
+  grill.position.set(2.35,.52,0); body.add(grill);
+  const chrome = new THREE.Mesh(new THREE.BoxGeometry(.07,.03,.95),
+    new THREE.MeshStandardMaterial({color:0xd8dade, metalness:1, roughness:.2}));
+  chrome.position.set(2.36,.46,0); body.add(chrome);
+  [-1,1].forEach(sd => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(.14,.09,.2), paint);
+    m.position.set(.82,.98,sd*.9); body.add(m);
+  });
+
+  // Koplampen + remlicht + richtingaanwijzers (emissive, leven via JS)
+  const headMat = new THREE.MeshStandardMaterial({color:0x1a1a16,
+    emissive:0xffdf9e, emissiveIntensity:.12});
+  const brakeMat = new THREE.MeshStandardMaterial({color:0x1a0505,
+    emissive:0xff1a08, emissiveIntensity:.3});
+  const sigMatL = new THREE.MeshStandardMaterial({color:0x241503,
+    emissive:0xffa312, emissiveIntensity:0});
+  const sigMatR = sigMatL.clone();
+  [-1,1].forEach(sd => {
+    const h = new THREE.Mesh(new THREE.BoxGeometry(.12,.13,.36), headMat);
+    h.position.set(2.3,.62,sd*.5); body.add(h);
+    const sf = new THREE.Mesh(new THREE.BoxGeometry(.08,.09,.13), sigMatL);
+    sf.position.set(2.31,.6,sd*.66); body.add(sf);
+    const sb = new THREE.Mesh(new THREE.BoxGeometry(.08,.09,.13), sigMatR);
+    sb.position.set(-2.33,.6,sd*.66); body.add(sb);
+  });
+  const brake = new THREE.Mesh(new THREE.BoxGeometry(.08,.15,1.12), brakeMat);
+  brake.position.set(-2.34,.64,0); body.add(brake);
+
+  // Kenteken + L-bord op het dak (de lesauto-handtekening)
+  const plate = new THREE.Mesh(new THREE.PlaneGeometry(.52,.14),
+    new THREE.MeshBasicMaterial({map:plateTex}));
+  plate.position.set(-2.36,.44,0); plate.rotation.y = -Math.PI/2; body.add(plate);
+  const post = new THREE.Mesh(new THREE.CylinderGeometry(.025,.025,.22,8), darkPl);
+  post.position.set(-.2,1.56,0); body.add(post);
+  const lMat = new THREE.MeshBasicMaterial({map:lTex});
+  [-1,1].forEach(sd => {
+    const L = new THREE.Mesh(new THREE.PlaneGeometry(.42,.42), lMat);
+    L.position.set(-.2,1.84,sd*.012); L.rotation.y = sd*Math.PI/2; body.add(L);
+  });
+
+  // Wielen: band + velg + spaken (zodat je de rotatie écht ziet)
+  const tireMat = new THREE.MeshStandardMaterial({color:0x0a0a0b, roughness:.95});
+  const rimMat = new THREE.MeshStandardMaterial({color:0xb9bdc4, metalness:1, roughness:.25});
+  const wheels = [];
+  const wheelAt = (x,z) => {
+    const g = new THREE.Group();
+    const tg = new THREE.CylinderGeometry(.35,.35,.26,26); tg.rotateX(Math.PI/2);
+    g.add(new THREE.Mesh(tg, tireMat));
+    const rg = new THREE.CylinderGeometry(.2,.2,.27,20); rg.rotateX(Math.PI/2);
+    g.add(new THREE.Mesh(rg, rimMat));
+    for (let i=0;i<5;i++){
+      const sp = new THREE.Mesh(new THREE.BoxGeometry(.3,.055,.24), rimMat);
+      sp.position.x = .15; sp.rotation.z = i*Math.PI*2/5;
+      const holder = new THREE.Group(); holder.add(sp); g.add(holder);
+    }
+    g.position.set(x,.35,z); carRoot.add(g); wheels.push(g);
+  };
+  wheelAt(1.38,.74); wheelAt(1.38,-.74); wheelAt(-1.35,.74); wheelAt(-1.35,-.74);
+
+  // Nep-schaduw onder de auto (goedkoper én zachter dan shadow maps)
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(6,3),
+    new THREE.MeshBasicMaterial({map:shadowTex, transparent:true, opacity:.6, depthWrite:false}));
+  shadow.rotation.x = -Math.PI/2; shadow.position.y = .035;
+  shadow.renderOrder = 2; carRoot.add(shadow);
+
+  // Koplamp-spotlights + subtiele lichtkegels
+  const beamTargets = [];
+  const beams = [];
+  [-1,1].forEach(sd => {
+    const tgt = new THREE.Object3D(); tgt.position.set(16,0,sd*1.1);
+    carRoot.add(tgt); beamTargets.push(tgt);
+    const sp = new THREE.SpotLight(0xfff0d0, 0, 38, .4, .8, 1.4);
+    sp.position.set(2.3,.65,sd*.5); sp.target = tgt;
+    carRoot.add(sp); beams.push(sp);
+    const coneGeo = new THREE.ConeGeometry(1.5,8.5,20,1,true);
+    coneGeo.rotateZ(Math.PI/2);
+    const cone = new THREE.Mesh(coneGeo, new THREE.MeshBasicMaterial({
+      color:0xffe6b0, transparent:true, opacity:0, blending:THREE.AdditiveBlending,
+      depthWrite:false, side:THREE.DoubleSide}));
+    cone.position.set(2.3+4.25,.6,sd*.5); cone.rotation.z = -.05;
+    carRoot.add(cone); beams.push(cone);
+  });
+
+  /* — De weg — */
+  const road = new THREE.Mesh(new THREE.PlaneGeometry(260,48),
+    new THREE.MeshStandardMaterial({color:0x0e0f13, roughness:.96}));
+  road.rotation.x = -Math.PI/2; scene.add(road);
+  const edgeMat = new THREE.MeshBasicMaterial({color:0x565a62});
+  [-4.2,4.2].forEach(z => {
+    const e = new THREE.Mesh(new THREE.BoxGeometry(260,.02,.13), edgeMat);
+    e.position.set(0,.01,z); scene.add(e);
+  });
+  const dashes = [];
+  const dashMat = new THREE.MeshBasicMaterial({color:0xb9bdc4});
+  for (let i=0;i<18;i++){
+    const d = new THREE.Mesh(new THREE.BoxGeometry(1.5,.022,.16), dashMat);
+    d.position.set(-36 + i*4.2, .012, 0); scene.add(d); dashes.push(d);
+  }
+  // Amber lichtmasten langs de weg — het snelheidsgevoel
+  const posts = [];
+  const poleMat = new THREE.MeshStandardMaterial({color:0x14161a, roughness:.8});
+  const lampMat = new THREE.MeshBasicMaterial({color:0xffb020});
+  [-7.6,7.6].forEach(z => { for (let i=0;i<8;i++){
+    const g = new THREE.Group();
+    const p = new THREE.Mesh(new THREE.CylinderGeometry(.05,.05,2.2,6), poleMat);
+    p.position.y = 1.1; g.add(p);
+    const l = new THREE.Mesh(new THREE.BoxGeometry(.34,.08,.08), lampMat);
+    l.position.y = 2.2; g.add(l);
+    g.position.set(-48 + i*13.5, 0, z); scene.add(g); posts.push(g);
+  }});
+
+  /* — Verkeerslicht bij het kruispunt — */
+  const tl = {state:'red'};
+  {
+    const g = new THREE.Group();
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,3.4,8), poleMat);
+    pole.position.y = 1.7; g.add(pole);
+    const box = new THREE.Mesh(new THREE.BoxGeometry(.42,1.15,.3), darkPl);
+    box.position.y = 3.5; g.add(box);
+    const mkLamp = (y,col) => {
+      const m = new THREE.Mesh(new THREE.CircleGeometry(.13,20),
+        new THREE.MeshBasicMaterial({color:col}));
+      m.position.set(0,y,.16); g.add(m); return m;
+    };
+    tl.red = mkLamp(3.85,0x3a0f0c); tl.amber = mkLamp(3.5,0x2a2007); tl.green = mkLamp(3.15,0x0a2a10);
+    g.position.set(7.2,0,-3.4); g.rotation.y = .5; scene.add(g);
+  }
+  tl.set = st => {
+    tl.state = st;
+    tl.red.material.color.set(st==='red' ? 0xff3b30 : 0x3a0f0c);
+    tl.green.material.color.set(st==='green' ? 0x2ee56a : 0x0a2a10);
+  };
+
+  return {renderer, scene, camera, carRoot, body, wheels, dashes, posts,
+          headMat, brakeMat, sigMatL, sigMatR, beams, shadow, tl};
+}
+three = initThree();
+
+/* ═══════════════ Regie: scrollen = rijden ═══════════════ */
+const state = {
+  started:false, speed:0, boost:0, brakeT:0, lastY:scrollY, scrollVel:0,
+  headOn:false, headLevel:0, turnDir:0, turnUntil:0,
+  camPos:new THREE.Vector3(6.4,1.05,-2.6), camLook:new THREE.Vector3(0,.7,.4),
+  mouseX:0, mouseY:0, t:0
+};
+
+if (three && !RM){
+  // Muis-parallax: de camera beweegt licht met je mee
+  addEventListener('pointermove', e => {
+    state.mouseX = (e.clientX/innerWidth - .5);
+    state.mouseY = (e.clientY/innerHeight - .5);
+  }, {passive:true});
+
+  // Kruispunt vastpinnen zolang de keuze gemaakt wordt
+  ScrollTrigger.create({trigger:'#kruispunt', start:'top top', end:'+=120%', pin:true});
+}
+
+/* Kruispunt-keuzes: groen licht, knippers, afslag, doorrijden */
+function kies(links){
+  if (!three || RM){ goTo(links ? '#proefles' : '#rijopleiding'); return; }
+  three.tl.set('green');
+  state.turnDir = links ? -1 : 1; state.turnUntil = performance.now() + 2400;
+  if (!RM){
+    gsap.to(three.carRoot.rotation, {y: links ? .5 : -.5, duration:.9, ease:'power2.inOut'});
+    gsap.to(three.carRoot.rotation, {y:0, duration:1.1, ease:'power2.inOut', delay:1});
+  }
+  goTo(links ? '#proefles' : '#rijopleiding');
+}
+const kL = document.getElementById('keuzeProefles');
+const kR = document.getElementById('keuzeDoor');
+kL.onclick = () => kies(true);
+kR.onclick = () => kies(false);
+// Preview: alvast knipperen bij hover — de auto "denkt mee"
+[kL,kR].forEach((el,i) => {
+  if (!three || RM) return;
+  el.addEventListener('mouseenter', () => { if(!state.turnDir) state.turnDir = i?-1:1; });
+  el.addEventListener('mouseleave', () => {
+    if (performance.now() > state.turnUntil) state.turnDir = 0; });
+});
+
+/* "START JE RIT" — motor tot leven, koplampen aan, wegsprint */
+document.getElementById('startRit').addEventListener('click', () => {
+  if (state.started){ goTo('#kruispunt'); return; }
+  state.started = true; state.headOn = true;
+  document.getElementById('hud').classList.add('on');
+  if (!three || RM){ goTo('#kruispunt'); return; }
+  state.boost = 14; // korte sprint in de middenstrepen
+  const btn = document.getElementById('startRit');
+  btn.style.pointerEvents = 'none';
+  gsap.to({}, {duration:1.5, onComplete(){
+    btn.style.pointerEvents = '';
+    goTo('#kruispunt');
+  }});
+});
+
+/* Zelf scrollen start de auto ook — niemand wacht op de CTA */
+addEventListener('scroll', () => {
+  if (!state.started && Math.abs(scrollY - state.lastY) > 60){
+    state.started = true; state.headOn = true;
+    document.getElementById('hud').classList.add('on');
+  }
+}, {passive:true});
+
+/* ═══════════════ Render-loop met gewicht en gevoel ═══════════════ */
+const CAMKEYS = [
+  {p:0.00, pos:[6.4,1.05,-2.6], look:[0,.7,.4]},
+  {p:0.13, pos:[-4.2,2.7, 7.0], look:[1,.8,-.6]},
+  {p:0.30, pos:[ 4.8,.95, 3.3], look:[0,.75,0]},
+  {p:0.46, pos:[ .6,1.5, 7.4],  look:[0,.8,0]},
+  {p:0.62, pos:[-5.4,1.6, 4.8], look:[0,.8,0]},
+  {p:0.78, pos:[ 5.6,2.4, 5.2], look:[0,.9,0]},
+  {p:1.00, pos:[ 6.8,.75,  .9], look:[0,.65,0]},
+];
+const smooth = t => t*t*(3-2*t);
+const V = (a,b,t) => a + (b-a)*t;
+
+function camAt(p, out, look){
+  let i = 0;
+  while (i < CAMKEYS.length-2 && p > CAMKEYS[i+1].p) i++;
+  const a = CAMKEYS[i], b = CAMKEYS[i+1];
+  const t = smooth(Math.min(1, Math.max(0, (p-a.p)/(b.p-a.p))));
+  out.set(V(a.pos[0],b.pos[0],t), V(a.pos[1],b.pos[1],t), V(a.pos[2],b.pos[2],t));
+  look.set(V(a.look[0],b.look[0],t), V(a.look[1],b.look[1],t), V(a.look[2],b.look[2],t));
+}
+
+let last = performance.now(), frame = 0;
+const hudSpeed = document.getElementById('hudSpeed');
+const hudGear = document.getElementById('hudGear');
+const hudState = document.getElementById('hudState');
+const hudSec = document.getElementById('hudSec');
+const SECNAMES = {hero:'VERTREK', kruispunt:'KRUISPUNT', proefles:'PROEFLES',
+  rijopleiding:'OPLEIDING', pakketten:'PAKKETTEN', overfred:'OVER FRED', contact:'BESTEMMING'};
+
+function tick(now){
+  requestAnimationFrame(tick);
+  if (document.hidden || !three) return;
+  const dt = Math.min(.05, (now-last)/1000); last = now; state.t += dt;
+  const T = three;
+
+  // Scrollsnelheid → rijsnelheid (met demping: gewicht)
+  state.scrollVel = (scrollY - state.lastY)/Math.max(dt,.001);
+  state.lastY = scrollY;
+  const target = Math.max(-42, Math.min(42, state.scrollVel*.02)) + state.boost;
+  state.boost = Math.max(0, state.boost - dt*10);
+  state.speed += (target - state.speed) * (1 - Math.pow(.0015, dt));
+
+  // Vooruitgang van de pagina
+  const maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  const prog = Math.min(1, scrollY/maxScroll);
+
+  // Remlicht: stilstaan na beweging, of de stop bij de proefles
+  const braking = (Math.abs(state.scrollVel) < 60 && Math.abs(state.speed) > 1.5)
+                  || (prog > .26 && prog < .42) || (!state.started);
+  state.brakeT += ((braking ? 1 : 0) - state.brakeT) * (1 - Math.pow(.01, dt));
+
+  // Koplampniveau
+  state.headLevel += ((state.headOn ? 1 : 0) - state.headLevel) * (1 - Math.pow(.05, dt));
+  T.headMat.emissiveIntensity = .12 + state.headLevel*3;
+  T.brakeMat.emissiveIntensity = .3 + state.brakeT*2.6;
+
+  // Richtingaanwijzers (knipperen met echte fase)
+  if (state.turnDir && now > state.turnUntil) state.turnDir = 0;
+  const blink = (state.t*2.6) % 1 < .5;
+  const dir = state.turnDir;
+  T.sigMatL.emissiveIntensity = (dir === -1 && blink) ? 3.2 : 0; // links = z-negatief
+  T.sigMatR.emissiveIntensity = (dir ===  1 && blink) ? 3.2 : 0;
+
+  // Wielen en weg: de wereld beweegt, de auto blijft het anker
+  const wheelSpin = state.speed*dt/.35;
+  T.wheels.forEach(w => w.rotation.z -= wheelSpin);
+  T.dashes.forEach(d => { d.position.x -= state.speed*dt;
+    if (d.position.x < -38) d.position.x += 75.6; });
+  T.posts.forEach(p => { p.position.x -= state.speed*dt*.55;
+    if (p.position.x < -52) p.position.x += 108; });
+
+  // Carrosserie: duikt bij remmen, neus omhoog bij gas, leunt in de bocht
+  const accel = (target - state.speed);
+  T.body.rotation.z += (Math.max(-.045, Math.min(.045, -accel*.004)) - T.body.rotation.z) * .06;
+  T.body.rotation.x += ((dir ? dir*.03 : 0) - T.body.rotation.x) * .07;
+  // Motortrilling bij stilstand nadat hij gestart is
+  T.body.position.y = (state.started && Math.abs(state.speed) < .6)
+    ? Math.sin(state.t*42)*.004 : 0;
+
+  // Koplampbundels
+  T.beams.forEach(b => {
+    if (b.isSpotLight) b.intensity = state.headLevel*28;
+    else b.material.opacity = state.headLevel*.05;
+  });
+
+  // Camera: keyframes + parallax + een zweem van snelheid
+  const desired = new THREE.Vector3(), look = new THREE.Vector3();
+  camAt(prog, desired, look);
+  desired.x -= state.speed*.03; // camera "blijft iets achter" — snelheidsgevoel
+  desired.y += state.mouseY*-.5; desired.z += state.mouseX*.7;
+  const damp = 1 - Math.pow(.002, dt);
+  state.camPos.lerp(desired, damp); state.camLook.lerp(look, damp);
+  T.camera.position.copy(state.camPos);
+  T.camera.lookAt(state.camLook);
+
+  T.renderer.render(T.scene, T.camera);
+
+  // HUD (geklept: maar om de zoveel frames)
+  if (++frame % 6 === 0){
+    hudSpeed.textContent = Math.min(120, Math.round(Math.abs(state.speed)*3.4));
+    hudGear.textContent = !state.started ? 'P' : (Math.abs(state.speed) > .8 ? 'D' : 'N');
+    hudState.textContent = !state.started ? 'GEPARKEERD'
+      : (Math.abs(state.speed) > .8 ? 'ONDERWEG' : 'STILSTAND');
+    hudSec.textContent = SECNAMES[curSection] || '—';
+  }
+}
+requestAnimationFrame(tick);
+
+/* Reduced motion: auto statisch met koplampen aan, alles direct leesbaar */
+if (RM && three){
+  state.started = true; state.headOn = true; state.headLevel = 1;
+  three.headMat.emissiveIntensity = 3.2;
+  document.getElementById('hud').classList.add('on');
+  const render = () => three.renderer.render(three.scene, three.camera);
+  render(); addEventListener('resize', render);
+} else if (RM){
+  document.getElementById('hud').style.display = 'none';
+}
+
+/* Resize & na laden alles opmeten */
+addEventListener('resize', () => {
+  if (!three) return;
+  three.camera.aspect = innerWidth/innerHeight;
+  three.camera.fov = isMobile() ? 54 : 40;
+  three.camera.updateProjectionMatrix();
+  three.renderer.setSize(innerWidth, innerHeight);
+});
+addEventListener('load', () => ScrollTrigger.refresh());
+</script>
+</body>
+</html>
