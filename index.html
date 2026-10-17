@@ -228,6 +228,11 @@ nav.scrolled{background:rgba(11,12,15,.86);border-color:var(--line);backdrop-fil
 
 /* ═════════════════════════════════════════════════
    GOOGLE REVIEWS — 3D-carrousel in donker paneel
+   FIX onderkant: kader is 400px hoog én op desktop
+   (≥720px) staat het knippen UIT (overflow:visible) —
+   een toedraaiende kaart kan dus onderaan nooit meer
+   worden afgesneden.  Mobiel behoudt het clip-kader
+   (dat voorkomt dat de ring de pagina verbreedt).
    ═════════════════════════════════════════════════ */
 .g-reviews{margin-top:clamp(50px,7vw,90px)}
 .gr-box{background:rgba(13,15,20,.72);border:1px solid var(--line);
@@ -244,14 +249,16 @@ nav.scrolled{background:rgba(11,12,15,.86);border-color:var(--line);backdrop-fil
 .gr-score b{font:700 26px/1 var(--fh);font-variant-numeric:tabular-nums}
 .gr-score span{color:var(--mut);font-size:13px}
 
-/* de arena: perspective + clip-kader — 340px hoog zodat de
-   onderkant van toedraaiende kaarten NIET wordt afgesneden */
-.gr-scalewrap{height:340px;position:relative;overflow:hidden;margin-top:26px}
+/* de arena: 400px hoog; op desktop géén clip */
+.gr-scalewrap{height:400px;position:relative;overflow:hidden;margin-top:26px}
 .gr-scalewrap.staticmode{height:auto;overflow:visible}
-.gr-arena{width:100%;height:1000px;position:relative;
+.gr-arena{width:100%;height:400px;position:relative;
   perspective:1250px;perspective-origin:50% 42%;
   cursor:grab;touch-action:pan-y;transform-origin:center center}
 .gr-arena:active{cursor:grabbing}
+@media(min-width:720px){
+  .gr-scalewrap{overflow:visible}
+}
 .gr-ring{position:absolute;left:50%;top:50%;width:262px;height:238px;
   margin:-119px 0 0 -131px;transform-style:preserve-3d;will-change:transform}
 .gr-card{position:absolute;inset:0;
